@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void hacerSonido() = 0;
+    virtual ~Animal() {}
+};
+
+class Perro : public Animal {
+public:
+    void hacerSonido() override { cout << "Guau guau" << endl; }
+};
+
+class Gato : public Animal {
+public:
+    void hacerSonido() override { cout << "Miau" << endl; }
+};
+
+class Pato : public Animal {
+public:
+    void hacerSonido() override { cout << "Cuac cuac" << endl; }
+};
+
+int main() {
+    Perro p; Gato g; Pato pa;
+    Animal* animales[] = { &p, &g, &pa };
+    for (Animal* a : animales) a->hacerSonido();
+}
