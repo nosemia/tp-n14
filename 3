@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+class Vehiculo {
+public:
+    virtual void acelerar() = 0;
+    virtual ~Vehiculo() {}
+};
+
+class Coche : public Vehiculo {
+public:
+    void acelerar() override { cout << "El coche acelera suave hasta 120 km/h" << endl; }
+};
+
+class Moto : public Vehiculo {
+public:
+    void acelerar() override { cout << "La moto acelera fuerte hasta 180 km/h" << endl; }
+};
+
+int main() {
+    Coche c; Moto m;
+    Vehiculo* v[] = { &c, &m };
+    for (Vehiculo* x : v) x->acelerar();
+}
