@@ -1,0 +1,31 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Figura {
+public:
+    virtual double calcularArea() = 0;
+    virtual ~Figura() {}
+};
+
+class Rectangulo : public Figura {
+    double base, altura;
+public:
+    Rectangulo(double b, double h) : base(b), altura(h) {}
+    double calcularArea() override { return base * altura; }
+};
+
+class Circulo : public Figura {
+    double radio;
+public:
+    Circulo(double r) : radio(r) {}
+    double calcularArea() override { return M_PI * radio * radio; }
+};
+
+int main() {
+    Rectangulo r(4, 3);
+    Circulo c(2.5);
+    Figura* figuras[] = { &r, &c };
+    for (Figura* f : figuras)
+        cout << "Area: " << f->calcularArea() << endl;
+}
