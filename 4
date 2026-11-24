@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+class Empleado {
+public:
+    virtual double calcularSalario() = 0;
+    virtual ~Empleado() {}
+};
+
+class Gerente : public Empleado {
+    double fijo, bono;
+public:
+    Gerente(double f, double b) : fijo(f), bono(b) {}
+    double calcularSalario() override { return fijo + bono; }
+};
+
+class Vendedor : public Empleado {
+    double base; int ventas; double comision;
+public:
+    Vendedor(double b, int v, double c) : base(b), ventas(v), comision(c) {}
+    double calcularSalario() override { return base + ventas * comision; }
+};
+
+int main() {
+    Gerente g(150000, 30000);
+    Vendedor v(80000, 12, 5000);
+    Empleado* e[] = { &g, &v };
+    for (Empleado* x : e)
+        cout << "Salario: " << x->calcularSalario() << endl;
+}
